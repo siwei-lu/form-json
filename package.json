@@ -20,8 +20,14 @@
   "license": "MIT",
   "devDependencies": {
     "@types/chai": "^4.1.7",
+    "@types/get-value": "^3.0.1",
     "@types/mocha": "^5.2.7",
+    "@types/set-value": "^2.0.0",
     "chai": "^4.2.0",
     "tacer-template-lib": "^0.2.1"
+  },
+  "dependencies": {
+    "get-value": "^3.0.1",
+    "set-value": "^3.0.1"
   }
 }

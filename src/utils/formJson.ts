@@ -1,4 +1,5 @@
-import { deepGet, deepSet } from '~/utils/deep'
+import get from 'get-value'
+import set from 'set-value'
 
 type Item = {
   name: string
@@ -11,14 +12,14 @@ const itemOf = (input: HTMLInputElement) => ({
 })
 
 function reduced(sum: Object, { name, value }: Item) {
-  const target = deepGet(sum, name)
+  const target = get(sum, name)
 
   if (!target) {
-    deepSet(sum, name, value)
+    set(sum, name, value)
   } else if (target instanceof Array) {
     target.push(value)
   } else {
-    deepSet(sum, name, [target, value])
+    set(sum, name, [target, value])
   }
 
   return sum
