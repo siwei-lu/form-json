@@ -6,7 +6,8 @@
   "types": "./types",
   "scripts": {
     "build": "tacer-script build",
-    "test": "tacer-script test"
+    "test": "tacer-script test",
+    "preversion": "npm run build"
   },
   "repository": {
     "type": "git",
