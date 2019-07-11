@@ -1,1 +1,1 @@
-export { default } from '~/utils/formJson'
+export { default } from './utils/formJson'

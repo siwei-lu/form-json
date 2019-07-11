@@ -21,9 +21,11 @@
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/get-value": "^3.0.1",
+    "@types/jsdom": "^12.2.4",
     "@types/mocha": "^5.2.7",
     "@types/set-value": "^2.0.0",
     "chai": "^4.2.0",
+    "jsdom": "^15.1.1",
     "tacer-template-lib": "^0.2.1"
   },
   "dependencies": {

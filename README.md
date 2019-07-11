@@ -1,8 +1,6 @@
-# Form JSON
+# Form JSON [![CircleCI](https://circleci.com/gh/IdanLoo/form-json/tree/master.svg?style=svg)](https://circleci.com/gh/IdanLoo/form-json/tree/master)
 
-Converts an HTML form object to JavaScript object.
-
-[![CircleCI](https://circleci.com/gh/IdanLoo/form-json/tree/master.svg?style=svg)](https://circleci.com/gh/IdanLoo/form-json/tree/master)
+Converts an HTMLFormElement to a typed JavaScript object.
 
 ## How to use
 
@@ -17,7 +15,7 @@ Converts an HTML form object to JavaScript object.
    ```javascript
    import formJson from 'form-json'
 
-   const form = document.getElementById('form')
+   const form = document.forms[0]
    const obj = formJson(form)
 
    // print the obj converted by the form
@@ -28,21 +26,15 @@ Converts an HTML form object to JavaScript object.
 
 Though we already have FormData to send form data asynchronously, there are still many reasons to convert form elements to json objects.
 
-- Some APIs don't accept the `multipart/form-data` content type.
+- Some APIs only accept the `application/json` content type.
 - You want to change the structure of the form data.
-- You want to send both form data and json data in the same way.
+- You don't want to handle the form data especially.
+- You don't want to lose the the type information of fields.
 
 Anyway, I wrote this library for the above reasons.
 
-## Note
+## Usage
 
-- You CANNOT convert a form containing binary data to a json object.
-  ```html
-  <!-- You cannot convert this form because of the file input -->
-  <form>
-    <input type="file" name="photo" />
-  </form>
-  ```
 - If there are multiple fields with the same name, they will be combined into one array.
 
   ```html
@@ -54,7 +46,7 @@ Anyway, I wrote this library for the above reasons.
 
   So this form will be parsed to `{ hobbies: ['singing', 'dancing'] }`
 
-- It can understand nested keys even containing arrays, so don't worry about doing this.
+- It can understand nested keys even containing arrays, so it's fine to do this.
 
   ```html
   <form>
@@ -82,6 +74,12 @@ Anyway, I wrote this library for the above reasons.
   }
   ```
 
-- If you use TypeScript, you should annotate the type of the form as HTMLFormElement to avoid the warning.
+- The value of a file input will be an useless fake path.
+  ```html
+  <!-- You cannot convert this form because of the file input -->
+  <form>
+    <input type="file" name="photo" />
+  </form>
+  ```
 
 Pretty Good right? Star this project if you like it.
