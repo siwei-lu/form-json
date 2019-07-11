@@ -1,2 +1,5 @@
+.DS_Store
+.circleci/
 node_modules/
 src/
+test/
