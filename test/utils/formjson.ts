@@ -16,13 +16,15 @@ describe('formJson()', () => {
       const json = formJson(form)
 
       json.name.should.eq('Idan Loo')
-      json.email.should.eq('im@siwei.lu')
-      json.location.should.eq('China')
-      json.gender.should.eq('male')
+      json.keyword.should.eq('star it')
 
-      json.hobbies.should.length(2)
-      json.hobbies.should.contain('singing')
-      json.hobbies.should.contain('designing')
+      json.contact.location.should.eq('China')
+      json.contact.email.should.eq('im@siwei.lu')
+
+      json.info.gender.should.eq('male')
+      json.info.hobbies.should.length(2)
+      json.info.hobbies.should.contain('singing')
+      json.info.hobbies.should.contain('designing')
     })
   })
 
