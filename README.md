@@ -74,12 +74,104 @@ Anyway, I wrote this library for the above reasons.
   }
   ```
 
+- It automatically converts `['number', 'range']` types to `Number`, and `['date', 'month']` types to `Date`.
+
+  ```html
+  <form>
+    <input type="range" name="speed" value="50" />
+    <input type="number" name="age" value="23" />
+    <input type="month" name="month" value="2019-07" />
+    <input type="date" name="date" value="2019-07-10" />
+  </form>
+  ```
+
+  This form will be parsed to
+
+  ```javascript
+  {
+    range: 50,
+    age: 23,
+    month: new Date('2019-07'),
+    date: new Date('2019-07-10')
+  }
+  ```
+
+- It uses `form.elements` to get form elements, which means it doesn't care about the sturecture of the form, but the form elements such as `input`, `select`.
+
+  ```html
+  <form>
+    <label> Name: <input type="text" name="name" value="Idan Loo" /> </label>
+    <label>
+      Location:
+      <select name="contact.location" value="China">
+        <option value="China">China</option>
+        <option value="US">The US</option>
+        <option value="UK">The UK</option>
+      </select>
+    </label>
+  </form>
+  ```
+
+  This form is acceptable and parsed to
+
+  ```javascript
+  {
+    name: 'Idan Loo',
+    location: 'China'
+  }
+  ```
+
 - The value of a file input will be an useless fake path.
   ```html
   <!-- You cannot convert this form because of the file input -->
   <form>
     <input type="file" name="photo" />
   </form>
+  ```
+
+## Use With React
+
+If you are using some modern front-end libraries such as React, Vue, Angular, you probably know that almost all of these libraries don't recommend modifying DOM nodes directyly. So you have to get the form DOM through some tricks.
+
+- Listen to the onSubmit event (Recommend)
+
+  ```jsx
+  import formJson from 'form-json'
+
+  const Form = () => {
+    const handleSubmit = (e) => {
+      // Bingo
+      const json = formJson(e.currentTarget)
+    }
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <!-- some elements -->
+      </form>
+    )
+  }
+  ```
+
+- Use `createRef`
+
+  ```jsx
+  import React, { createRef } from 'react'
+  import formJson from 'form-json'
+
+  const Form = () => {
+    const formRef = createRef()
+
+    const handleSomeEvent = () => {
+      // Bingo
+      const json = formJson(formRef.current)
+    }
+
+    return (
+      <form ref={formRef}>
+        <!-- some elements -->
+      </form>
+    )
+  }
   ```
 
 Pretty Good right? Star this project if you like it.
