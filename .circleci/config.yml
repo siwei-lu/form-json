@@ -1,10 +1,64 @@
 version: 2
 jobs:
-  build:
+
+  init:
     docker:
       - image: circleci/node
-
     steps:
       - checkout
-      - run: yarn
-      - run: yarn test
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run:
+          name: Initial
+          command: yarn
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  test:
+    docker: 
+      - image: circleci/node
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Test
+          command: yarn tes
+
+  publish:
+    docker: 
+      - image: circleci/node
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Auth NPM
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
+      - run:
+          name: Publish
+          command: npm publish
+
+workflows:
+  version: 2
+  test_and_publish:
+    jobs:
+      - init
+      - test:
+          requires:
+            - init
+      - publish:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
