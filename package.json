@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tacer-script build",
     "test": "tacer-script test",
-    "preversion": "npm run build"
+    "preversion": "npm run test"
   },
   "repository": {
     "type": "git",

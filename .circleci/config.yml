@@ -30,7 +30,7 @@ jobs:
           at: .
       - run:
           name: Test
-          command: yarn tes
+          command: yarn test
 
   publish:
     docker: 
