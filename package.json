@@ -1,6 +1,6 @@
 {
   "name": "form-json",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Converts an HTML form object to JavaScript object.",
   "main": "dist/index.js",
   "types": "./types",
