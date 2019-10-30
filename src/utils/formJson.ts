@@ -40,7 +40,7 @@ function itemsOf(form: HTMLFormElement): Item[] {
   return items
 }
 
-function reduced(sum: Object, { name, value }: Item) {
+function reduced<T extends Parsed>(sum: T, { name, value }: Item) {
   const target = get(sum, name)
 
   if (!target) {
@@ -54,8 +54,8 @@ function reduced(sum: Object, { name, value }: Item) {
   return sum
 }
 
-export default function formJson(form: HTMLFormElement): Parsed {
+export default function formJson<T extends Parsed>(form: HTMLFormElement): T {
   return itemsOf(form)
     .filter(i => i.name)
-    .reduce(reduced, {})
+    .reduce<T>(reduced, {} as any)
 }
