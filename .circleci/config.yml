@@ -8,7 +8,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             - v1-dependencies-
       - run:
           name: Initial
@@ -16,7 +16,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
       - persist_to_workspace:
           root: .
           paths:
