@@ -1,14 +1,6 @@
 import get from 'get-value'
 import set from 'set-value'
-
-export type Item = {
-  name: string
-  value: string
-}
-
-export type Parsed = {
-  [key: string]: any
-}
+import { Item, Parsed } from '../types'
 
 const numberType = ['number', 'range']
 const dateType = ['month', 'date']
@@ -60,5 +52,5 @@ function reduced<T extends Parsed>(sum: T, { name, value }: Item) {
 export default function formJson<T extends Parsed>(form: HTMLFormElement): T {
   return itemsOf(form)
     .filter(i => i.name)
-    .reduce<T>(reduced, {} as any)
+    .reduce<T>(reduced, {} as T)
 }
