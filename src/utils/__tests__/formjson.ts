@@ -23,7 +23,11 @@ describe('text type based inputs', () => {
       },
       info: {
         gender: 'male',
-        hobbies: ['singing', 'designing'],
+        hobbies: {
+          singing: true,
+          designing: true,
+          sleeping: false,
+        },
       },
     })
   })
@@ -57,22 +61,6 @@ describe('date type based inputs', () => {
     expect(json).toEqual({
       month: new Date('2019-07'),
       date: new Date('2019-07-10'),
-    })
-  })
-})
-
-describe('checked type inputs', () => {
-  it('should parse checkbox and radio', () => {
-    const checkedType = resolve(resources, 'checked-type.html')
-    const html = readFileSync(checkedType)
-
-    const { window } = new JSDOM(html)
-    const form = window.document.forms[0]
-    const json = formJson(form)
-
-    expect(json).toEqual({
-      rich: 'rich',
-      gender: 'female',
     })
   })
 })

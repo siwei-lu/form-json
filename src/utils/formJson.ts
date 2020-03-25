@@ -10,7 +10,6 @@ export type Parsed = {
   [key: string]: any
 }
 
-const checkedType = ['radio', 'checkbox']
 const numberType = ['number', 'range']
 const dateType = ['month', 'date']
 
@@ -22,7 +21,11 @@ function itemsOf(form: HTMLFormElement): Item[] {
   for (let i = 0; i < length; ++i) {
     let { name, value, type, checked } = elements.item(i) as HTMLInputElement
 
-    if (checkedType.includes(type) && !checked) {
+    if (type === 'checkbox') {
+      value = !!checked as any
+    }
+
+    if (type === 'radio' && !checked) {
       continue
     }
 
