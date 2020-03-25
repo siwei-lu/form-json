@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "~/*": ["./*"]
-    },
     "esModuleInterop": true,
     "declaration": true,
     "declarationDir": "./types"
