@@ -2,8 +2,8 @@
   "name": "form-json",
   "version": "2.0.1",
   "description": "Converts an HTML form object to JavaScript object.",
-  "main": "dist/index.js",
-  "types": "./types",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tacer-script build",
     "test": "tacer-script test",
@@ -21,8 +21,8 @@
   "author": "Idan Loo <im@siwei.lu>",
   "license": "MIT",
   "devDependencies": {
-    "@types/get-value": "^3.0.1",
-    "@types/jest": "^25.1.4",
+    "@types/get-value": "^3.0.2",
+    "@types/jest": "^25.2.3",
     "@types/jsdom": "^12.2.4",
     "@types/set-value": "^2.0.0",
     "jsdom": "^15.1.1",
@@ -30,6 +30,6 @@
   },
   "dependencies": {
     "get-value": "^3.0.1",
-    "set-value": "^3.0.1"
+    "set-value": "^4.1.0"
   }
 }

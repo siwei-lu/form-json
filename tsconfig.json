@@ -2,6 +2,10 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "declaration": true,
-    "declarationDir": "./types"
-  }
+    "declarationDir": "./dist"
+  },
+  "exclude": [
+    "./dist",
+    "**/__tests__/**.ts"
+  ]
 }
